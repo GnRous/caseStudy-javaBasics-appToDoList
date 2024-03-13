@@ -1,11 +1,9 @@
-import java.util.concurrent.StructureViolationException;
-
 public class TodolistApplication {
 
   public static String[] model = new String[10];
 
   public static void main(String[] args) {
-    testShowTodolist();
+    testAddTodoList();
   }
 
   /**
@@ -54,11 +52,19 @@ public class TodolistApplication {
 
     //tambahkan ke posisi yang data array nya NULL
     for (int i = 0; i < model.length; i++) {
-      if (model[1] == null) {
+      if (model[i] == null) {
         model[i] = todo;
         break;
       }
     }
+  }
+
+  public static void testAddTodoList() {
+    for (int i = 0; i < 25; i++) {
+      addTodoList("Contoh todo ke-" + i);
+    }
+
+    showTodoList();
   }
 
   /**
