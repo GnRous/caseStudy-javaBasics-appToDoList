@@ -3,7 +3,7 @@ public class TodolistApplication {
   public static String[] model = new String[10];
 
   public static void main(String[] args) {
-    testAddTodoList();
+    testRemoveTodoList();
   }
 
   /**
@@ -43,7 +43,7 @@ public class TodolistApplication {
     //jika isFull, kita resize ukuran array 2x lipat
     if (isFull) {
       var temp = model;
-      model = new String[model.length*2];
+      model = new String[model.length * 2];
 
       for (int i = 0; i < temp.length; i++) {
         model[i] = temp[i];
@@ -76,9 +76,34 @@ public class TodolistApplication {
     } else if (model[number - 1] == null) {
       return false;
     } else {
-      model[number - 1] = null;
+      for (int i = (number - 1); i < model.length; i++) {
+        if (i == (model.length -1) ) {
+          model[i] = null;
+        } else {
+          model[i] = model[i + 1];
+        }
+      }
       return true;
     }
+  }
+
+  public static void testRemoveTodoList() {
+    addTodoList("Satu");
+    addTodoList("Dua");
+    addTodoList("Tiga");
+    addTodoList("Empat");
+    addTodoList("Lima");
+
+    var result = removeTodoList(20);
+    System.out.println(result);
+
+    result = removeTodoList(6);
+    System.out.println(result);
+
+    result = removeTodoList(2);
+    System.out.println(result);
+
+    showTodoList();
   }
 
   /**
